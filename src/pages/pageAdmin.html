@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/src/styles/globalStyles.css">
+    <link rel="stylesheet" href="/src/styles/pageAdmin.css">
+
+    <title>Kenzie Empresas | Admin</title>
+</head>
+<body>
+    
+    <dialog class="modal_controler">
+
+    </dialog>
+
+    <nav>
+        <div class="contanier_nav">
+        <div class="contanier_logo">
+            <div class="point"></div>
+            <h1>Kezie Empresas</h1>
+        </div>
+
+        <button class="logout">Logout</button>
+        </div>
+    </nav>
+
+    <main>
+        <div class="contanier_main">
+        <div class="contanier_header">
+            <h2>Departamentos</h2>
+            <select>
+                <option selected disabled >Selecionar Empresa</option>
+            </select>
+            <button>Criar</button>
+        </div>
+
+        <ul class="lista_Departments">
+            <li>
+                <h3>Department Name</h3>
+                <p>Department Description</p>
+                <p>Company Name</p>
+
+                <div class="contanier_icons">
+                    <img src="/src/assets/img/Vector ver.png" alt="Visualizar">
+                    <img src="/src/assets/img/Vector Edit.png" alt="Edit">
+                    <img src="/src/assets/img/Vector Delete.png" alt="Delete">
+                </div>
+                
+            </li>
+        </ul>
+
+        <div div class="contanier_header--Users">
+            <h2>Usuários cadastrados</h2>
+        </div>
+
+        <ul class="lista_users">
+            <li>
+                <h3>Username</h3>
+                <p>Pleno</p>
+                <p>Company Name</p>
+
+                <div class="contanier_icons">
+                    <img src="/src/assets/img/Vector Edit.png" alt="Edit">
+                    <img src="/src/assets/img/Vector Delete.png" alt="Delete">
+                </div>
+                
+            </li>
+        </ul>
+        </div>
+    </main>
+
+
+
+<script type="module" src="/src/scripts/pageAdmin.js"></script>
+</body>
+</html>

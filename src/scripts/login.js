@@ -24,23 +24,31 @@ function userLogin(){
             
             const token = await loginRequest(bodyLogin)
             const validate_user = await checkUserType(token)
-
-            const validate = JSON.parse(localStorage.getItem('@Empresas:is_admin'))
-            
-            if(validate == false){
-                setTimeout(()=>{
-                    window.location.replace('./pageUser.html')
-                },2000)
-            }else{
-                setTimeout(()=>{
-                    window.location.replace('./pageAdmin.html')
-                },2000)
-            }
+           if(validate_user){ authorization()}
         }
     })
    
 }
 userLogin()
+
+function authorization(){
+
+    const validate = JSON.parse(localStorage.getItem('@Empresas:is_admin'))
+
+            console.log(validate)
+            
+            if(validate == false){
+                console.log(validate)
+                setTimeout(()=>{
+                    window.location.replace('./pageUser.html')
+                },2000)
+            }else{
+               setTimeout(()=>{
+                  window.location.replace('./pageAdmin.html')
+               },2000)
+                
+            }
+}
 
 
 function registerBack(){

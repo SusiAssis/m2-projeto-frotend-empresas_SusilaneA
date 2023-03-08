@@ -13,12 +13,28 @@ nav{
 
 }
 
+.contanier_nav button{
+    width:8em;
+    height:3em;
+    background-color: var(--brand200);
+    border: 1px solid var(--brand100);
+    color: var(--brand100);
+    font-weight: 700;
+    font-size: 1.125em;
+    padding: 0.5em;
+
+}
+
 .contanier_logo{
     display: flex;
     align-items: center;
     gap:0.5em;
     
 
+}
+.contanier_logo h1{
+    font-size: 1em;
+    
 }
 
 
@@ -59,4 +75,16 @@ nav{
     width: 85%;
     height: auto;
     gap: 3em;
+}
+
+.editar{
+    width: 1.2em;
+    cursor: pointer;
+}
+
+dialog{
+    margin: 0 auto;
+    width: 20rem;
+    height: 20rem;
+    border: none;
 }

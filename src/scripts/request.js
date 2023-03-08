@@ -39,7 +39,7 @@ export async function loginRequest(loginBody){
             const responseJson = response.json().then(({token})=>{
                 alert('Login realizado com sucesso')
                 localStorage.setItem('@Empresas:token', JSON.stringify(token))
-
+            return token
             })
         return responseJson
         }else{
@@ -170,15 +170,20 @@ export async function updateInfoEmployee(userBody){
     })
 }
 
-export async function checkUserType(){
+export async function checkUserType(token){
     const check = await fetch(`${baseUrl}/auth/validate_user`,{
      method: 'GET',
-     headers: requestHeaders
+     headers: {
+        'Content-type':'application/json',
+        Authorization: `Bearer ${token}`
+    }
     }).then(response=>{
         if(response.ok){
-        const responseJson = response.json().then(({is_admin})=>{
-        localStorage.setItem('@Empresas:is_admin', JSON.stringify(is_admin))
+        const responseJson = response.json().then((res)=>{
+        localStorage.setItem('@Empresas:is_admin', JSON.stringify(res.is_admin))
+        return res
         })
+        return responseJson
     }else{
         response.json().then((res)=>{
             alert(res.error)
@@ -186,5 +191,6 @@ export async function checkUserType(){
     }
 
     })
+    return check
 }
 
