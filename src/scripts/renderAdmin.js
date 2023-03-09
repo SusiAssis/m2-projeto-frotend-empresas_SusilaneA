@@ -1,6 +1,6 @@
 import { listAllDepartmentsByCompaniesRequest } from "./requestAdmin.js"
 
-export async function renderAllDepartments(array){
+    export async function renderAllDepartments(array){
     const list = document.querySelector('.lista_Departments')
     
     list.innerHTML = ''
@@ -29,6 +29,7 @@ export async function renderAllDepartments(array){
         contanierIcons.classList.add('contanier_icons')
 
         img_ver.classList.add('vizualizar')
+        img_ver.id = department.uuid
         img_ver.src = "/src/assets/img/Vector ver.png"
         img_ver.name = "Vizualizar"
         img_ver.alt = "Vizualizar"
@@ -80,13 +81,15 @@ export async function renderAllDepartments(array){
     
             contanierIcons.classList.add('contanier_icons')
     
-            img_edit.classList.add('editar')
+            img_edit.classList.add('editar_user')
             img_edit.src = "/src/assets/img/Vector Edit.png"
+            img_edit.id = user.uuid
             img_edit.name = "Editar"
             img_edit.alt = "Editar"
     
             img_delete.classList.add('delete')
             img_delete.src = "/src/assets/img/Vector Delete.png"
+            img_delete.id = user.uuid
             img_delete.name = "Delete"
             img_delete.alt = "Delete"
     
@@ -99,27 +102,33 @@ export async function renderAllDepartments(array){
         }
 
 
-        export async function renderAllCompaniesSelect(array){
-            const select = document.querySelector('select')
+    export async function renderAllCompaniesSelect(array){
+        const select = document.querySelector('.select_empresa')
         
-            array.forEach(companies=>{
-                const option = document.createElement('option')
-                option.innerText = companies.name
-                option.classList.add('allSectors')
-                option.name = companies.name
-                option.value = companies.uuid
+        array.forEach(companies=>{
+            const option = document.createElement('option')
+            option.innerText = companies.name
+            option.classList.add('allSectors')
+            option.name = companies.name
+            option.value = companies.uuid
         
-                select.appendChild(option)
+            select.appendChild(option)
         
             })
         }
 
 
 
-        export async function renderDepartmentCompanies(value){
+    export async function renderDepartmentCompanies(value){
 
-            const Departments = await listAllDepartmentsByCompaniesRequest(value)
-            console.log(Departments)
-            renderAllDepartments(Departments)
+        const Departments = await listAllDepartmentsByCompaniesRequest(value)
+        console.log(Departments)
+        renderAllDepartments(Departments)
          
-        }
+    }
+
+
+    
+
+
+

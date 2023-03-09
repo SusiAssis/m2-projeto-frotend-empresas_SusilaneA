@@ -117,3 +117,7 @@ main{
     border-bottom: 1px solid #4200FF;
     padding: 1em;
 }
+
+dialog{
+  margin: 0 auto; 
+}
