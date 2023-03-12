@@ -1,4 +1,4 @@
-import { listAllDepartmentsByCompaniesRequest } from "./requestAdmin.js"
+import { listAllDepartmentsByCompaniesRequest , allDepartmentsRequest} from "./requestAdmin.js"
 
     export async function renderAllDepartments(array){
     const list = document.querySelector('.lista_Departments')
@@ -8,6 +8,7 @@ import { listAllDepartmentsByCompaniesRequest } from "./requestAdmin.js"
     array.forEach(department=>{
         const card = createCardDepartment(department)
         list.appendChild(card)
+
     })
     
     }
@@ -28,20 +29,19 @@ import { listAllDepartmentsByCompaniesRequest } from "./requestAdmin.js"
 
         contanierIcons.classList.add('contanier_icons')
 
-        img_ver.classList.add('vizualizar')
+        img_ver.classList.add('visualizar')
         img_ver.id = department.uuid
         img_ver.src = "/src/assets/img/Vector ver.png"
-        img_ver.name = "Vizualizar"
-        img_ver.alt = "Vizualizar"
+        img_ver.alt = "Visualizar"
 
         img_edit.classList.add('editar')
         img_edit.src = "/src/assets/img/Vector Edit.png"
-        img_edit.name = "Editar"
+        img_edit.id = department.uuid
         img_edit.alt = "Editar"
 
-        img_delete.classList.add('delete')
+        img_delete.classList.add('delete_dep')
         img_delete.src = "/src/assets/img/Vector Delete.png"
-        img_delete.name = "Delete"
+        img_delete.id = department.uuid
         img_delete.alt = "Delete"
 
         contanierIcons.append(img_ver,img_edit,img_delete)
@@ -56,17 +56,24 @@ import { listAllDepartmentsByCompaniesRequest } from "./requestAdmin.js"
 
     export async function renderAllUsers(array){
         const list = document.querySelector('.lista_users')
-        
+        const department = JSON.parse(localStorage.getItem
+            ('@Empresas:AllDepartments'))
+    
         list.innerHTML = ''
         
         array.forEach(user=>{
-            const card = createCardUsers(user)
+            const card = createCardUsers(user, department)
             list.appendChild(card)
         })
         
         }
         
-        function createCardUsers(user){
+        function createCardUsers(user, department){
+           // const department = JSON.parse(localStorage.getItem
+            //('@Empresas:AllDepartments'))
+            
+
+
             const li = document.createElement('li')
             const name = document.createElement('h3')
             const nivel = document.createElement('p')
@@ -77,21 +84,26 @@ import { listAllDepartmentsByCompaniesRequest } from "./requestAdmin.js"
     
             name.innerText = user.username
             nivel.innerText = user.professional_level
-            company.innerText = user.department_uuid
+
+            department.forEach(dep=>{
+                if(dep.uuid == user.department_uuid){
+                    company.innerText = dep.companies.name
+                }
+            })
+            //company.innerText = user.department_uuid
     
             contanierIcons.classList.add('contanier_icons')
     
             img_edit.classList.add('editar_user')
             img_edit.src = "/src/assets/img/Vector Edit.png"
             img_edit.id = user.uuid
-            img_edit.name = "Editar"
             img_edit.alt = "Editar"
     
             img_delete.classList.add('delete')
             img_delete.src = "/src/assets/img/Vector Delete.png"
             img_delete.id = user.uuid
-            img_delete.name = "Delete"
             img_delete.alt = "Delete"
+            img_delete.dataset.user = user.username
     
             contanierIcons.append(img_edit,img_delete)
     
@@ -129,6 +141,6 @@ import { listAllDepartmentsByCompaniesRequest } from "./requestAdmin.js"
 
 
     
-
+    
 
 

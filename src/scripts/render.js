@@ -167,6 +167,9 @@ export async function renderModalEdit(){
     modal_contanier.append(button_close,titulo,input_name,input_email,input_password,button_editar)
 
     dialog.appendChild(modal_contanier)
+
+
+    
 return dialog
 }
 

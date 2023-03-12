@@ -1,4 +1,4 @@
-import { url } from "inspector"
+
 
 const baseUrl = "http://localhost:6278"
 const token = JSON.parse(localStorage.getItem('@Empresas:token'))
@@ -89,4 +89,61 @@ export async function deleteUserRequest(id){
         }
     })
     return user
+}
+
+
+
+export async function createDepartmentRequest(bodyDepartment){
+    const department = await fetch(`${baseUrl}/departments`,{
+       method:'POST',
+       headers: requestHeaders,
+       body: JSON.stringify(bodyDepartment)
+    }).then(response=>{
+        if(response.ok){
+           alert('Departamento criado com sucesso!')
+        }else{
+            response.json().then((resp)=>{
+                alert(resp.json())
+            })
+        }
+    })
+    return department
+}
+
+
+
+export async function usersWithoutDepartmentRequest(){
+const users = await fetch(`${baseUrl}/admin/out_of_work`,{
+ method: 'GET',
+ headers: requestHeaders,
+}).then(response=>{
+ if(response.ok){
+    return response.json()
+    }else{
+        response.json().then((resp)=>{
+            alert(`${resp.error}`)
+            })
+        }
+    })
+
+return users
+}
+
+
+
+export async function editDepartmentRequest(id,bodyDep){
+    const edit = await fetch(`${baseUrl}/departments/${id}`,{
+        method:'PATCH',
+        headers: requestHeaders,
+        body: JSON.stringify(bodyDep)
+    }).then(response=>{
+        if(response.ok){
+            alert('Descrição do departamento atualizado com sucesso!')
+        }else{
+            response.json().then((resp)=>{
+                alert(resp.json())
+            })
+        }
+    })
+return edit
 }

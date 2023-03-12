@@ -121,3 +121,20 @@ main{
 dialog{
   margin: 0 auto; 
 }
+
+.modal_contanier{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 1em;
+}
+
+.bnt_Close{
+position: absolute;
+right: 1em;
+top: 1em;
+}
+
+.modal_contanier h2{
+    margin-top: 1em;
+}

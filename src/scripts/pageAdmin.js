@@ -1,7 +1,7 @@
 import { allDepartmentsRequest , listAllUsersRequest} from "./requestAdmin.js"
 import { allCompaniesRequest } from "./request.js"
 import { renderAllDepartments , renderAllUsers , renderAllCompaniesSelect , renderDepartmentCompanies } from "./renderAdmin.js"
-import { showModalEditUser } from "./modalAdmin.js"
+import { showModalEditUser , showModalDeleteUser , showModalCreatDepartment , showModalVisualizar , showModalEditDepartment , showModalDeleteDepartment } from "./modalAdmin.js"
 
 
 async function renderPageAdmin(){
@@ -9,6 +9,8 @@ async function renderPageAdmin(){
     const allDepart = await allDepartmentsRequest()
     localStorage.setItem('@Empresas:AllDepartments',JSON.stringify(allDepart))
     renderAllDepartments(allDepart)
+    
+    showModalVisualizar()
 
     const all_companies = await allCompaniesRequest()
     console.log(all_companies)
@@ -19,6 +21,10 @@ async function renderPageAdmin(){
     renderAllUsers(allUser)
 
     showModalEditUser()
+    showModalDeleteUser()
+    showModalCreatDepartment()
+    showModalEditDepartment()
+    showModalDeleteDepartment()
 
  }
  renderPageAdmin()
