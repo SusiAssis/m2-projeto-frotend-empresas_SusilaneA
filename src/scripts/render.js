@@ -32,7 +32,7 @@ function createCard(companie){
     const li = document.createElement('li')
     const title = document.createElement('h2')
     const time = document.createElement('p')
-    const sector = document.createElement('p')
+    const sector = document.createElement('span')
 
     li.classList.add('card_companies')
 
@@ -90,7 +90,11 @@ export async function renderInfoEmployeeLogout(user){
 
 export async function renderListEmployeesDepartaments(array){
 const section = document.querySelector('.contanier_infoDepartment') 
+const lista = document.querySelector('.contanier_nomeColega')
+const nomeDep = document.querySelector('.nomeDepartamento')
+console.log(array)
 
+ 
 
 if(array == ''){
  
@@ -106,11 +110,15 @@ if(array == ''){
    return section
 }else{
 
-section.innerHTML = ''
+nomeDep.innerHTML = array[0].name 
+section.append()
+
+lista.innerHTML = ''
 
 array.forEach(employee=>{
-    const card = createCardEmployees()
-    section.appendChild(card)
+    console.log(employee)
+    const card = createCardEmployees(employee)
+    
 })
 }
 
@@ -118,15 +126,24 @@ array.forEach(employee=>{
 
 
 function createCardEmployees(employee){
-const li = document.createElement('li')
-const name = document.createElement('h4')
-const nivel = document.createElement('p')
+const users = employee.users
+const lista = document.querySelector('.contanier_nomeColega')
 
-name.innerText = employee.users.username
-nivel.innerText = employee.users.username.professional_level
-li.append(name,nivel)
+users.forEach(user=>{
+    const li = document.createElement('li')
+    const name = document.createElement('h4')
+    const nivel = document.createElement('p')
+    console.log(employee.users)
 
-return li 
+    name.innerText = user.username
+    nivel.innerText = user.professional_level
+
+    li.append(name,nivel)
+    lista.appendChild(li)
+})
+
+
+return lista
 }
 
 

@@ -74,7 +74,39 @@ nav{
     border: 1px solid rgba(0, 0, 0, 0.1);
     width: 85%;
     height: auto;
-    gap: 3em;
+    gap: 0em;
+}
+
+.contanier_departmentUser{
+    background-color: var(--brand100);
+    width: 100%;
+    color: var(--brand200);
+    text-align: center;
+    padding: 1em;
+    
+}
+
+.contanier_nomeColega{
+    background-color:#F8F8F8 ;
+    width: 100%;
+    list-style: none;
+    height: auto;
+    padding: 2em;
+    display: flex;
+    gap: 2em;
+
+}
+
+.contanier_nomeColega li{
+    background-color: var(--brand200);
+    width: 318px;
+    height: 76px;
+    display: flex;
+    flex-direction: column;
+    padding: 1em;
+    gap: 0.5em;
+    border: 1px solid var(--brand100);
+
 }
 
 .editar{

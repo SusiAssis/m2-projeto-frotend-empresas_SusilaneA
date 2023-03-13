@@ -1,14 +1,14 @@
 
-import { updateUserRequest , deleteUserRequest , usersWithoutDepartmentRequest , listAllUsersRequest , editDepartmentRequest } from "./requestAdmin.js"
+import { updateUserRequest , deleteUserRequest , usersWithoutDepartmentRequest , listAllUsersRequest , editDepartmentRequest , createDepartmentRequest , deleteDepartmentRequest , hireEmployeeRequest , dismissEmployeeRequest} from "./requestAdmin.js"
 
-import { allCompaniesRequest } from "./request.js"
+import { allCompaniesRequest , } from "./request.js"
+
+import {renderPageAdmin} from "./pageAdmin.js"
 
 
 function renderModalEditUser(id){
     const users = JSON.parse(localStorage.getItem('@Empresas:AllUsers'))
     const contanierModal = document.querySelector('.modal_contanier')
-    console.log(contanierModal)
-
     
 
     users.forEach(user=>{
@@ -166,8 +166,6 @@ export function showModalDeleteUser(){
 function renderDeleteUser(id){
     const users = JSON.parse(localStorage.getItem('@Empresas:AllUsers'))
     const contanierModal = document.querySelector('.modal_contanier')
-    console.log(contanierModal)
-
     
 
     users.forEach(user=>{
@@ -212,12 +210,8 @@ function modalDeleteUser(id){
     const buttonDelete = document.querySelector('.button_Delete')
     const modalControler = document.querySelector('.modal_contanier')
 
-    console.log(buttonDelete)
-    
-
     buttonDelete.addEventListener('click',async(event)=>{
-    console.log(id)  
-   
+     
     modalControler.close()
     
     await deleteUserRequest(id,bodyUser)
@@ -227,15 +221,18 @@ function modalDeleteUser(id){
 
 export function showModalVisualizar(){
     const ver = document.querySelectorAll('.visualizar')
-    console.log(ver)
-
+    
     const contanier_controler = document.querySelector('.modal_controlerVisualizar')
 
     ver.forEach(bnt=>{
         bnt.addEventListener('click', ()=>{
+            
             renderModalVisualizar(bnt.id)
             contanier_controler.showModal()
             closeModal()
+            showHireEmployee()
+            
+            
     })
         })
 }
@@ -243,18 +240,18 @@ export function showModalVisualizar(){
 
 function renderModalVisualizar(id){
     const contanierModal = document.querySelector('.modal_contanierVisualizar')
+    const buttonContratar = document.querySelector('.bnt_contratar')
     const department = JSON.parse(localStorage.getItem('@Empresas:AllDepartments'))
    
-    console.log(department)
 
     department.forEach(dep=>{
     if(dep.uuid == id){
     
-    console.log('chegou') 
     const card = createModalVisualizar(dep)
-    //contanierModal.appendChild(card)
+    buttonContratar.id = dep.uuid
     createModalSelectVisualizar(dep)
     createModalListaVisualizar(dep)
+    
     }
     })
 
@@ -283,7 +280,7 @@ return contanierText
 async function createModalSelectVisualizar(dep){
     let select = document.querySelector('.select_department')
     const arrayUser = await usersWithoutDepartmentRequest()
-    console.log(arrayUser)
+    
 
     select.innerHTML = ''
 
@@ -320,6 +317,7 @@ async function createModalListaVisualizar(dep){
             nivel.innerText = user.professional_level
             company.innerText = dep.companies.name
             btn_Desligar.classList.add('bnt_desligar')
+            btn_Desligar.innerText = 'Desligar'
             btn_Desligar.id = user.uuid
 
             li.append(username,nivel,company,btn_Desligar)
@@ -328,12 +326,53 @@ async function createModalListaVisualizar(dep){
             return lista
         }
         })
+        showDismissEmployee()
 }
+
+
+
+function showHireEmployee(){
+const contanier_controler = document.querySelector('.modal_controlerVisualizar')
+const select = document.querySelector('.select_department')
+const button = document.querySelector('.bnt_contratar')
+const body = {}
+
+button.addEventListener('click',()=>{
+    console.log(select.value)
+    body['user_uuid'] = select.value
+    body['department_uuid'] = button.id
+
+    hireEmployeeRequest(body)
+    renderPageAdmin()
+    contanier_controler.close()
+})
+
+}
+
+
+
+function showDismissEmployee(){
+    const contanier_controler = document.querySelector('.modal_controlerVisualizar')
+    const button = document.querySelector('.bnt_desligar')
+    console.log(button)
+    
+    button.addEventListener('click',()=>{
+        
+        const id = button.id
+        
+    
+        dismissEmployeeRequest(id)
+        renderPageAdmin()
+        contanier_controler.close()
+    })
+    
+    }
+    
 
 
 export function showModalEditDepartment(){
     const controlerModal = document.querySelector('.modal_controler')
-    console.log(controlerModal)
+    
     const editDepartment = document.querySelectorAll('.editar')
 
 
@@ -341,10 +380,13 @@ export function showModalEditDepartment(){
     editDepartment.forEach(bnt=>{
 
         bnt.addEventListener('click',()=>{
-            console.log(bnt)
+            
             renderModalEditDepartment(bnt.id)
             controlerModal.showModal()
+            closeModal()
             createBodyEditDepartment()
+            
+            
         })
     })
 
@@ -394,15 +436,16 @@ export function createBodyEditDepartment(){
     const input_Description = document.querySelector('.input_Descricao')
     const bntsalvar = document.querySelector('.bnt_salvarAlt')
     const bntId = bntsalvar.id
-    
     const bodyDescript = {}
 
 
     bntsalvar.addEventListener('click', async (event)=>{
     bodyDescript['description'] = input_Description.value
-     
-    modalControler.close()
+    
+    
     await editDepartmentRequest( bntId , bodyDescript)
+    modalControler.close()
+    renderPageAdmin()
     })
     
 }
@@ -411,16 +454,21 @@ export function createBodyEditDepartment(){
 
 export function showModalDeleteDepartment(){
     const controlerModal = document.querySelector('.modal_controler')
-    console.log(controlerModal)
+    
     const deleteDepartment = document.querySelectorAll('.delete_dep')
 
     deleteDepartment.forEach(bnt=>{
 
         bnt.addEventListener('click',()=>{
-            console.log(bnt)
+            
+            
             renderDeleteDepartment(bnt.id)
             controlerModal.showModal()
+            closeModal()
+            delete_Department(bnt.id)
             createBodyEditDepartment()
+            
+           
         })
     })
 }
@@ -431,10 +479,7 @@ function renderDeleteDepartment(id){
     const departments = JSON.parse(localStorage.getItem
     ('@Empresas:AllDepartments'))
     const contanierModal = document.querySelector('.modal_contanier')
-    console.log(contanierModal)
-
     
-
     departments.forEach(dep=>{
     
         
@@ -468,25 +513,33 @@ function createModalDeleteDepartment(dep){
 
 
     contanierAviso.append(buttonClose,titleAviso,button)
-
+    
 return contanierAviso
 }
 
 
+function delete_Department(id){ 
+    const buttonDelete = document.querySelector('.button_confirmar')
+    const modalControler = document.querySelector('.modal_controler')
 
 
+    buttonDelete.addEventListener('click',async(event)=>{
+    console.log(id)  
+   
+    await deleteDepartmentRequest(id)
+    modalControler.close()
+    renderPageAdmin()
+   })
 
-
-//--------------------------------------------------
+   return
+}
 
 
 
 
 function renderModalCreateDepartment(){
     const contanierModal = document.querySelector('.modal_contanier')
-    console.log(contanierModal)
-
-
+    
     contanierModal.innerHTML = '' 
     const card = createCardDepartment()
     
@@ -514,8 +567,8 @@ async function createCardDepartment(){
     inputName.name = 'name'
 
     inputDescription.placeholder = 'Descrição'
-    inputName.classList.add('input_department')
-    inputName.name = 'description'
+    inputDescription.classList.add('input_department')
+    inputDescription.name = 'description'
 
     selectCompanies.classList.add('select_companies')
     
@@ -539,7 +592,7 @@ export async function showModalCreatDepartment(){
             renderModalCreateDepartment()
             modalControler.showModal()
             closeModal()
-            
+            createBodyCreateDepartment()
     })
 }
 
@@ -562,3 +615,37 @@ export async function optionCreate(){
     return select
 }
 
+
+
+export function createBodyCreateDepartment(){
+    const inputs = document.querySelectorAll('.input_department')
+    const companies = document.querySelector('.select_companies') 
+    const button = document.querySelector('.btncreat_department')
+    const modalControler = document.querySelector('.modal_controler')
+    const id = button.id
+    const bodyDep = {}
+    let count = 0
+
+    button.addEventListener('click',async(event)=>{
+        
+        inputs.forEach(({name,value})=>{
+            if( value == ''){
+                count++
+            }
+
+            bodyDep[name]=value
+        })
+
+        bodyDep['company_uuid'] = companies.value
+
+        if(count !=0){
+            return alert('Por favor preencha todos os campos e tente novamente')
+        }else{
+        
+        modalControler.close()
+        await createDepartmentRequest(bodyDep)
+        renderPageAdmin()
+    }
+    })
+return bodyDep    
+}

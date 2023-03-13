@@ -4,7 +4,7 @@ import { renderAllDepartments , renderAllUsers , renderAllCompaniesSelect , rend
 import { showModalEditUser , showModalDeleteUser , showModalCreatDepartment , showModalVisualizar , showModalEditDepartment , showModalDeleteDepartment } from "./modalAdmin.js"
 
 
-async function renderPageAdmin(){
+export async function renderPageAdmin(){
     
     const allDepart = await allDepartmentsRequest()
     localStorage.setItem('@Empresas:AllDepartments',JSON.stringify(allDepart))
@@ -13,7 +13,7 @@ async function renderPageAdmin(){
     showModalVisualizar()
 
     const all_companies = await allCompaniesRequest()
-    console.log(all_companies)
+    
     renderAllCompaniesSelect(all_companies)
 
     const allUser = await listAllUsersRequest()
@@ -45,3 +45,16 @@ async function renderPageAdmin(){
 
 }
 searchDepartment()
+
+function logoutButton(){
+const bnt = document.querySelector('.logout')
+
+bnt.addEventListener('click', ()=>{
+    setTimeout(()=>{
+        localStorage.clear()
+        window.location.replace('../../index.html')
+    },2000)
+})
+
+}
+logoutButton()

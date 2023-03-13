@@ -1,5 +1,9 @@
 
 import { loginRequest , checkUserType} from "./request.js"
+import { toast } from "./toast.js"
+
+const green = 'var(--sucess100)'
+const red = 'var(--alert100)'
 
 function userLogin(){
     const inputs = document.querySelectorAll('.login_input')
@@ -19,7 +23,7 @@ function userLogin(){
         })
 
         if(count != 0){
-            return alert('Por favor preencha os campos e tente novamente')
+            return toast('Por favor preencha todos os campos e tente novamente', red)
         }else{
             
             const token = await loginRequest(bodyLogin)
@@ -35,17 +39,17 @@ function authorization(){
 
     const validate = JSON.parse(localStorage.getItem('@Empresas:is_admin'))
 
-            console.log(validate)
+            
             
             if(validate == false){
-                console.log(validate)
+                
                 setTimeout(()=>{
                     window.location.replace('./pageUser.html')
-                },2000)
+                },3000)
             }else{
                setTimeout(()=>{
                   window.location.replace('./pageAdmin.html')
-               },2000)
+               },3000)
                 
             }
 }

@@ -1,3 +1,5 @@
+import { toast } from "./toast.js"
+
 const baseUrl = "http://localhost:6278"
 const token = JSON.parse(localStorage.getItem('@Empresas:token'))
 const requestHeaders = {
@@ -19,7 +21,7 @@ export async function newUserRequest(registerBody){
     .then(response =>{
         console.log(response)
         if(response.ok){
-            alert('Sua conta foi criada com sucesso!')
+            toast('Sua conta foi criada com sucesso!',green)
         }else{
             response.json().then(resError=> console.log(resError.error))
         }
@@ -37,7 +39,7 @@ export async function loginRequest(loginBody){
     .then((response)=>{
         if(response.ok){
             const responseJson = response.json().then(({token})=>{
-                alert('Login realizado com sucesso')
+                toast('Login realizado com sucesso', green)
                 localStorage.setItem('@Empresas:token', JSON.stringify(token))
             return token
             })
@@ -45,7 +47,7 @@ export async function loginRequest(loginBody){
         }else{
 
             response.json().then(resError=>{
-                alert(`${resError.status}`)
+                toast(`${resError.status}`, red)
             })
         }
     })
@@ -107,7 +109,7 @@ export async function userProfile(){
             return response.json()
         }else{
             response.json().then((resp)=>{
-                alert(`${resp.error}`)
+                toast(`${resp.error}`,red)
             })
         }
     })
@@ -125,7 +127,7 @@ export async function allEmployeesDepartment(){
             return response.json()
         }else{
             response.json().then((resp)=>{
-                alert(`${resp.error}`)
+                toast(`${resp.error}`,red)
             })
         }
     })
@@ -159,12 +161,12 @@ export async function updateInfoEmployee(userBody){
         body: JSON.stringify(userBody)
     }).then(response=>{
         if(response.ok){
-        alert('Informações atualizadas com sucesso')
+        toast('Informações atualizadas com sucesso',green)
 
         return response.json()
         }else{
             response.json().then((res)=>{
-                alert(res.error)
+                toast(res.error,red)
             })
         }
     })
@@ -186,7 +188,7 @@ export async function checkUserType(token){
         return responseJson
     }else{
         response.json().then((res)=>{
-            alert(res.error)
+            console.log(res.error)
         })
     }
 

@@ -1,0 +1,30 @@
+.toast__container{
+    position: absolute;
+    top: 2em;
+    right: 2rem;
+
+   width: 280px;
+   height: auto;
+   font-weight: 700;
+   text-align: center;
+   border-radius: 8px;
+
+   padding: 2rem;
+  
+   animation: toastIn 2s linear;
+  
+    z-index:0;
+  }
+  
+  .toast__container > p {
+    color: var(--grey-100);
+  }
+  
+  .toast__add {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  
+  .toast__remove {
+    animation: toastOut 2s linear;
+  }

@@ -6,7 +6,7 @@ nav{
 
 .contanier_nav{
     margin: 0 auto;
-    width: 90%;
+    width: 82%;
     display: flex;
     justify-content: space-between;
     
@@ -48,36 +48,83 @@ nav{
 
 main{
     width: 100vw;
+    margin-bottom: 2em;
 }
 
 .contanier_main{
     margin: 0 auto;
     display: flex;
     flex-direction: column;
-    width: 90%;
+    width: 80%;
     background-color:var(--brand200);
     
 }
 
 .contanier_header{
+    margin-top: 5em;
+    margin-bottom: 1em;
     width: 100%;
     display: flex;
     justify-content: space-between;
+    align-items: flex-end
+}
+
+.contanier_header select{
+    border-radius: 1em;
+    width: 15em;
+    height: 32px;
+    padding:0 0.5em;
+    text-align: center;
+    
+}
+
+.contanier_header option{
+    text-align: center;
+    color: #4200FF;
+    
+}
+
+.contanier_header button{
+    background-color: var(--brand100);
+    font-size: 18px;
+    border: none;
+    width: 150px;
+    height: 48px;
+    color: var(--brand200);
 }
 
 .lista_Departments{
+    
     width: 100%;
+    height: 385px;
     background-color: #F8F8F8;
     list-style: none;
     display: flex;
     flex-wrap: wrap;
-    gap: 5em;
+    gap: 2em;
     justify-content: space-evenly;
     padding: 1em;
+    overflow:auto;
+    column-gap: 5em;
+
 }
 
+::-webkit-scrollbar{
+    background-color:#F8F8F8;
+    width: 5px;
+}
+::-webkit-scrollbar-thumb{
+background-color: var(--brand100);
+
+}
+
+
 .lista_Departments li{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
     width: 28em;
+    height: 180px;
     background-color: var(--brand200);
     border-bottom: 1px solid #4200FF;
     padding: 1em;
@@ -89,11 +136,14 @@ main{
     align-items: center;
     justify-content: center;
     gap: 0.5em;
+    margin-top: 2em;
+    margin-bottom: 0.5em;
     height: 1.75em;
 }
 
 .contanier_header--Users{
     margin-top: 2em;
+    margin-bottom: 1em;
     width: 100%;
     display: flex;
     justify-content: space-around;
@@ -102,31 +152,42 @@ main{
 
 .lista_users{
     width: 100%;
+    height:385px;
     background-color: #F8F8F8;
     list-style: none;
-    display: flex;
+    display:flex;
     flex-wrap: wrap;
-    gap: 5em;
+    gap: 2em;
+    column-gap: 5em;
     justify-content: space-evenly;
     padding: 1em;
+    overflow:auto;    
 }
 
 .lista_users li{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     width: 28em;
+    height: 180px;
     background-color: var(--brand200);
     border-bottom: 1px solid #4200FF;
     padding: 1em;
+    gap: 0.5em;
 }
 
 dialog{
-  margin: 0 auto; 
+  margin: 1em auto;
+  border: none; 
 }
 
 .modal_contanier{
+    width:100%;
     position: relative;
     display: flex;
     flex-direction: column;
     padding: 1em;
+    gap: 1em; 
 }
 
 .bnt_Close{
@@ -137,4 +198,144 @@ top: 1em;
 
 .modal_contanier h2{
     margin-top: 1em;
+    font-size: 36px;
+}
+
+.modal_contanier input{
+    width: 26em;
+    height: 52px;
+    font-size: 17px;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    padding: 0 1em;
+}
+
+.modal_contanier button{
+    width: 24.5em;
+    height: 52px;
+    background-color: var(--brand100);
+    border: none;
+    color: var(--brand200);
+    font-weight: 700;
+    font-size: 18px;
+    padding: 1em;
+}
+
+.modal_contanier select{
+    width: 26em;
+    height: 52px;
+    font-size: 17px;
+    color: rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    padding: 0 1em;
+}
+
+.modal_contanierVisualizar{
+    padding: 1.5em;
+    width: 50em;
+    height: 550px;
+    overflow: none;
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+    justify-content: space-around;
+
+}
+
+.modal_contanierVisualizar h1{
+font-size: 36px;
+}
+
+.contanier_text_select{
+display: flex;
+justify-content: space-between
+}
+
+.contanier_text_select select{
+    width: 26em;
+    height: 3.25em;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 18px;
+}
+
+.contanier_select{
+display: flex;
+flex-direction: column;
+gap: 0.5em;
+align-items: flex-end;
+
+}
+.contanier_text{
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.contanier_text h2{
+font-size: 1.25em;
+}
+
+.contanier_text p{
+font-size: 18px;
+}
+
+.contanier_select button{
+    width: 10em;
+    height: 48px;
+    background-color: var(--sucess100);
+    border: none;
+    color: var(--brand200);
+    font-weight: 600;
+    font-size: 18px;
+}
+
+.contanier__lista{
+    display: flex;
+    background-color: 
+    #F8F8F8;
+    list-style: none;
+    padding: 1.8em 1em;
+
+}
+
+.contanier__lista li{
+    background-color: var(--brand200);
+    padding: 1em;
+    width: 18em;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;  
+}
+
+.contanier__lista li button{
+    width: 10em;
+    height: 48px;
+    background-color: var(--brand200);
+    border: 1px solid var(--alert100);
+    color: var(--alert100);
+    font-weight: 700;
+    font-size: 18px;
+}
+
+.contanier__lista h2{
+    font-size: 20px;
+}
+
+.contanier__lista p{
+font-size: 18px;
+}
+
+.contanier_Aviso{
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2em;
+    padding: 3em;
+    width: 100%;
+    font-size: 28px;
+    font-weight: 700;
+}
+.contanier_Aviso button{
+    background-color: var(--sucess100);
 }

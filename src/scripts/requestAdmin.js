@@ -1,4 +1,7 @@
+import { toast } from "./toast.js"
 
+const green = 'var(--sucess100)'
+const red = 'var(--alert100)'
 
 const baseUrl = "http://localhost:6278"
 const token = JSON.parse(localStorage.getItem('@Empresas:token'))
@@ -68,10 +71,10 @@ export async function updateUserRequest(id,bodyUser){
         body: JSON.stringify(bodyUser)
     }).then(response=>{
         if(response.ok){
-            alert('Usuário atualizado com sucesso!')
+            toast('Usuário atualizado com sucesso!', green)
         }else{
             response.json().then((resp)=>{
-                alert(resp.json())
+                toast(resp.json(), red)
             })
         }
     })
@@ -85,7 +88,7 @@ export async function deleteUserRequest(id){
        headers: requestHeaders 
     }).then(response=>{
         if(response.ok){
-           alert('Usuário deletado com sucesso')
+           toast('Usuário deletado com sucesso', green)
         }
     })
     return user
@@ -100,7 +103,7 @@ export async function createDepartmentRequest(bodyDepartment){
        body: JSON.stringify(bodyDepartment)
     }).then(response=>{
         if(response.ok){
-           alert('Departamento criado com sucesso!')
+           toast('Departamento criado com sucesso!', green)
         }else{
             response.json().then((resp)=>{
                 alert(resp.json())
@@ -138,7 +141,7 @@ export async function editDepartmentRequest(id,bodyDep){
         body: JSON.stringify(bodyDep)
     }).then(response=>{
         if(response.ok){
-            alert('Descrição do departamento atualizado com sucesso!')
+            toast('Descrição do departamento atualizado com sucesso!', green)
         }else{
             response.json().then((resp)=>{
                 alert(resp.json())
@@ -146,4 +149,54 @@ export async function editDepartmentRequest(id,bodyDep){
         }
     })
 return edit
+}
+
+
+export async function deleteDepartmentRequest(id){
+    const department = await fetch(`${baseUrl}/departments/${id}`,{
+       method:'DELETE',
+       headers: requestHeaders 
+    }).then(response=>{
+        if(response.ok){
+           toast('Departamento deletado com sucesso', green)
+        }
+    })
+    return department
+}
+
+
+export async function hireEmployeeRequest(body){
+    const hire = await fetch(`${baseUrl}/departments/hire/`,{
+        method:'PATCH',
+        headers: requestHeaders,
+        body: JSON.stringify(body)
+    }).then(response=>{
+        if(response.ok){
+            toast('Novo funcionário contratado!', green)
+        }else{
+            response.json().then((resp)=>{
+                alert(resp.json())
+            })
+        }
+    })
+return hire
+}
+
+
+
+export async function dismissEmployeeRequest(id){
+    const dismiss = await fetch(`${baseUrl}/departments/dismiss/${id}`,{
+        method:'PATCH',
+        headers: requestHeaders,
+        
+    }).then(response=>{
+        if(response.ok){
+            toast('Funcionário desligado deste departamento!', green)
+        }else{
+            response.json().then((resp)=>{
+                alert(resp.json())
+            })
+        }
+    })
+return dismiss
 }

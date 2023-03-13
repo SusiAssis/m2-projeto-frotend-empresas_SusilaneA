@@ -1,8 +1,9 @@
 body{
 
-    background-image:url(/src/assets/img/background\ mobile.png);
+    background-image:url(/src/assets/img/background\ Desktop.png);
     background-repeat: no-repeat;
     background-size: auto;
+    background-position: top center;
 }
 
 .contanier_buttons{
@@ -11,9 +12,9 @@ body{
     background-color:var(--brand200);
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.12);
     position: fixed;
-    right: 1em;
+    right: 0em;
     top: 0em;
-    width: 18em;
+    width: 100%;
     height: 8em;
     padding: 1em;
     align-items: center;
@@ -97,4 +98,149 @@ align-items: center;
 .menu_mobile{
     display: flex;
     align-items: center;
+}
+
+.contanier_main{
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    width: 100%;
+    background-color:rgba(255, 255, 255, 0.95) ;
+    margin: 2em auto;
+    padding: 2em 1em;
+    
+}
+
+input{
+    width: 100%;
+    height: 52px;
+    padding: 0.5em;
+    color:rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+select{
+    width: 100%;
+    height: 52px;
+    padding: 0.5em;
+    color:rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+button{
+    width: 100%;
+    height: 48px;    
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    gap: 0.8em;
+    text-align: center;
+}
+
+.contanier_bnt{
+    display: flex;
+    flex-direction: row;
+    gap: 1.5em;
+    text-align: center;
+}
+
+.bnt_cadastre-se{
+    background-color: var(--brand100);
+    border: 1px solid var(--brand100);
+    color: var(--brand200);
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.bnt_Home{
+    background-color: var(--brand200);
+    border: 1px solid var(--brand100);
+    color: var(--brand100);
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.bnt_login{
+    background-color: var(--brand100);
+    border: 1px solid var(--brand100);
+    color: var(--brand200);
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.bnt_home{
+    background-color: var(--brand200);
+    border: 1px solid var(--brand100);
+    color: var(--brand100);
+    font-size: 18px;
+    font-weight: 600;
+    width: 120px;
+}
+
+@media(min-width:800px){
+    
+    .contanier_header{
+        padding: 0.5em 5em;
+        align-items: center;
+        width: 100%;
+
+    }
+
+    .contanier_buttons{
+        padding: 0;
+        display: flex;
+        flex-direction: row;
+        height: 65px;
+        width: auto;
+        border: none;
+        box-shadow: none;
+        width: 100%;
+        position: unset;
+        justify-content: flex-end;
+    }
+
+    .contanier_bnt{
+        padding: 0;
+        display: flex;
+        width:auto;
+        flex-direction: row;
+        gap: 0.5em;
+        align-items: center;  
+        background-color: none;
+        position: unset;
+        
+    }
+
+    .contanier_bnt button{
+        width: 142px;
+        height: 48px;
+    }
+    .contanier_menu{
+        width: 30%;
+    }
+
+    .menu_mobile{
+        display: none;
+    }
+
+    .contanier_header--open{
+        display: none;
+    }
+
+    .contanier_main{
+        margin: 7em auto;
+        width: 40%;
+        max-width: 450px;
+        height: auto;
+        padding: 1.5em;
+    }
+     
+    .contanier_bnt_form{
+        display: flex;
+        flex-direction: column;
+        gap: 2em;
+    }
+    
 }

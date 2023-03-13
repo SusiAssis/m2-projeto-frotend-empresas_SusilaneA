@@ -60,3 +60,16 @@ function editInfoEmployee(){
     
 
 }
+
+function logoutButton(){
+    const bnt = document.querySelector('.logout')
+    
+    bnt.addEventListener('click', ()=>{
+        setTimeout(()=>{
+            localStorage.clear()
+            window.location.replace('../../index.html')
+        },2000)
+    })
+    
+    }
+logoutButton()
