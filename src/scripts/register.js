@@ -1,5 +1,8 @@
 import { newUserRequest } from "./request.js"
+import { toast } from "./toast.js"
 
+const green = 'var(--sucess100)'
+const red = 'var(--alert100)'
 
 function userRegister(){
     const inputs = document.querySelectorAll('.cadastro_input')
@@ -23,14 +26,16 @@ function userRegister(){
         const nivel = select.value
         registerBody['professional_level'] = nivel
 
-        console.log(registerBody)
-
         localStorage.setItem('@Empresas:username', JSON.stringify(registerBody.username))
 
         if(count != 0){
-            return alert('Por favor preencha todos os campos necessários para realizar o cadastro')
+            return toast('Por favor preencha todos os campos necessários para realizar o cadastro', red)
         }else{
+            
             const newUser = await newUserRequest(registerBody)
+            setTimeout(()=>{
+                window.location.replace('./login.html')
+            },3000)
         }
     })
 
@@ -80,14 +85,14 @@ openMenu()
 
 function goLoginHome(){
     const bntLogin = document.querySelector('.bnt_login')
-    const bntCadastro = document.querySelector('.bnt_Home')
-
+    const bntHome = document.querySelector('.bnt_home')
+    
 
     bntLogin.addEventListener('click',()=>{
         window.location.replace('./login.html')
     })
 
-    bntCadastro.addEventListener('click',()=>{
+    bntHome.addEventListener('click',()=>{
         window.location.replace('../../index.html')
     })
 

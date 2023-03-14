@@ -1,7 +1,23 @@
 import { allDepartmentsRequest , listAllUsersRequest} from "./requestAdmin.js"
-import { allCompaniesRequest } from "./request.js"
+import { allCompaniesRequest , checkUserType } from "./request.js"
 import { renderAllDepartments , renderAllUsers , renderAllCompaniesSelect , renderDepartmentCompanies } from "./renderAdmin.js"
 import { showModalEditUser , showModalDeleteUser , showModalCreatDepartment , showModalVisualizar , showModalEditDepartment , showModalDeleteDepartment } from "./modalAdmin.js"
+
+async function authentication(){
+    const verifica = localStorage.getItem('@Empresas:is_admin')
+    const token = localStorage.getItem('@Empresas:token')
+
+    if(!token){
+        window.location.replace('../../index.html')
+    }
+    
+    if(verifica != 'true' ){
+
+        console.log(verifica)
+        window.location.replace('./pageUser.html')
+    }
+
+}
 
 
 export async function renderPageAdmin(){
@@ -58,3 +74,5 @@ bnt.addEventListener('click', ()=>{
 
 }
 logoutButton()
+
+authentication()

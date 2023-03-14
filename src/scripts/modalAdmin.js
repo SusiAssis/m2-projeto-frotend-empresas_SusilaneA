@@ -75,8 +75,8 @@ function createCardEditUser(user){
     pleno.value = 'pleno'
 
     senior.innerText = 'sênior'
-    pleno.name = 'sênior'
-    pleno.value = 'sênior'
+    senior.name = 'sênior'
+    senior.value = 'sênior'
     
     selectNivel.append(estagio,junior,pleno,senior)
 
@@ -138,7 +138,7 @@ export function createBodyEditUser(){
 
     modalControler.close()
     await updateUserRequest(id,bodyUser)
-
+    renderPageAdmin()
     })
 }
 
@@ -208,13 +208,14 @@ return contanierAviso
 
 function modalDeleteUser(id){ 
     const buttonDelete = document.querySelector('.button_Delete')
-    const modalControler = document.querySelector('.modal_contanier')
+    const modalControler = document.querySelector('.modal_controler')
 
     buttonDelete.addEventListener('click',async(event)=>{
      
     modalControler.close()
     
-    await deleteUserRequest(id,bodyUser)
+    await deleteUserRequest(id)
+    renderPageAdmin()
    })
 }
 
@@ -321,12 +322,13 @@ async function createModalListaVisualizar(dep){
             btn_Desligar.id = user.uuid
 
             li.append(username,nivel,company,btn_Desligar)
-            lista.innerHTML = ''
+            
             lista.appendChild(li)
-            return lista
+            
         }
         })
         showDismissEmployee()
+        return lista
 }
 
 
@@ -354,7 +356,6 @@ button.addEventListener('click',()=>{
 function showDismissEmployee(){
     const contanier_controler = document.querySelector('.modal_controlerVisualizar')
     const button = document.querySelector('.bnt_desligar')
-    console.log(button)
     
     button.addEventListener('click',()=>{
         

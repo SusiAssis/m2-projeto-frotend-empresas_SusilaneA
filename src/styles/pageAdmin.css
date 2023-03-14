@@ -295,6 +295,8 @@ font-size: 18px;
     #F8F8F8;
     list-style: none;
     padding: 1.8em 1em;
+    gap: 1.5em;
+    overflow: auto;
 
 }
 

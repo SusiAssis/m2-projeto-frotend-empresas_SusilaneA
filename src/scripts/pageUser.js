@@ -1,16 +1,31 @@
 import { userProfile , allEmployeesDepartment , updateInfoEmployee } from "./request.js"
 import { renderInfoEmployeeLogout , renderListEmployeesDepartaments , renderModalEdit } from "./render.js"
 
+async function authentication(){
+    const verifica = localStorage.getItem('@Empresas:is_admin')
+    const token = localStorage.getItem('@Empresas:token')
+    
+    if(verifica != 'false' ){
+
+        console.log(verifica)
+        window.location.replace('./pageAdmin.html')
+    }
+
+    if(!token){
+        window.location.replace('../../index.html')
+    }
+}
+
 async function renderPageUser(){
     
     
     const infoEmployee = await userProfile()
-    console.log(infoEmployee)
+    
     renderInfoEmployeeLogout(infoEmployee)
 
     const allEmployees = await allEmployeesDepartment()
-    console.log(allEmployees)
-    renderListEmployeesDepartaments(allEmployees)
+    
+    renderListEmployeesDepartaments(allEmployees , infoEmployee)
 
     renderModalEdit()
     showEdit()
@@ -73,3 +88,6 @@ function logoutButton(){
     
     }
 logoutButton()
+
+
+authentication()

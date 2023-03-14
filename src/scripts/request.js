@@ -19,9 +19,10 @@ export async function newUserRequest(registerBody){
         body: JSON.stringify(registerBody)
     })
     .then(response =>{
-        console.log(response)
+        
         if(response.ok){
             toast('Sua conta foi criada com sucesso!',green)
+
         }else{
             response.json().then(resError=> console.log(resError.error))
         }

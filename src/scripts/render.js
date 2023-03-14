@@ -88,13 +88,15 @@ export async function renderInfoEmployeeLogout(user){
 
 
 
-export async function renderListEmployeesDepartaments(array){
+export async function renderListEmployeesDepartaments(array, info){
+
+const infoUser = info
+
 const section = document.querySelector('.contanier_infoDepartment') 
 const lista = document.querySelector('.contanier_nomeColega')
 const nomeDep = document.querySelector('.nomeDepartamento')
-console.log(array)
 
- 
+
 
 if(array == ''){
  
@@ -116,8 +118,9 @@ section.append()
 lista.innerHTML = ''
 
 array.forEach(employee=>{
-    console.log(employee)
-    const card = createCardEmployees(employee)
+
+    
+    const card = createCardEmployees(employee,info)
     
 })
 }
@@ -125,21 +128,24 @@ array.forEach(employee=>{
 }
 
 
-function createCardEmployees(employee){
+function createCardEmployees(employee,info){
+const infoUser = info
 const users = employee.users
 const lista = document.querySelector('.contanier_nomeColega')
 
 users.forEach(user=>{
+
+    if(user.username != infoUser.username){
     const li = document.createElement('li')
     const name = document.createElement('h4')
     const nivel = document.createElement('p')
-    console.log(employee.users)
-
+    
     name.innerText = user.username
     nivel.innerText = user.professional_level
 
     li.append(name,nivel)
-    lista.appendChild(li)
+    lista.appendChild(li)}
+
 })
 
 

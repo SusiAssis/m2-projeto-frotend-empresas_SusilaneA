@@ -62,18 +62,15 @@ import { listAllDepartmentsByCompaniesRequest , allDepartmentsRequest} from "./r
         list.innerHTML = ''
         
         array.forEach(user=>{
+            if(user.username != 'ADMIN'){
             const card = createCardUsers(user, department)
-            list.appendChild(card)
+            list.appendChild(card)}
         })
         
         }
         
         function createCardUsers(user, department){
-           // const department = JSON.parse(localStorage.getItem
-            //('@Empresas:AllDepartments'))
             
-
-
             const li = document.createElement('li')
             const name = document.createElement('h3')
             const nivel = document.createElement('p')
@@ -90,7 +87,7 @@ import { listAllDepartmentsByCompaniesRequest , allDepartmentsRequest} from "./r
                     company.innerText = dep.companies.name
                 }
             })
-            //company.innerText = user.department_uuid
+            
     
             contanierIcons.classList.add('contanier_icons')
     
@@ -109,8 +106,8 @@ import { listAllDepartmentsByCompaniesRequest , allDepartmentsRequest} from "./r
     
             li.append(name,nivel,company,contanierIcons)
         
-        
-        return li
+            return li
+
         }
 
 
